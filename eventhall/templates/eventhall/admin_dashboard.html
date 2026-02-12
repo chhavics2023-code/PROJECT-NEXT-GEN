@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{ background:#f4f6f9; }
+        .stat-card{ border-radius:15px; }
+        .pending{ color:orange; font-weight:bold; }
+        .approved{ color:green; font-weight:bold; }
+        .rejected{ color:red; font-weight:bold; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark px-4">
+    <span class="navbar-brand">Admin Dashboard</span>
+    <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout</a>
+</nav>
+
+<div class="container mt-4">
+
+    <!-- STATS -->
+    <div class="row text-center mb-4">
+        <div class="col-md-3">
+            <div class="card stat-card shadow p-3">
+                <h4>{{ total_halls }}</h4>
+                <p>Total Halls</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stat-card shadow p-3">
+                <h4>{{ total_bookings }}</h4>
+                <p>Total Bookings</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stat-card shadow p-3">
+                <h4 class="pending">{{ pending_count }}</h4>
+                <p>Pending</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stat-card shadow p-3">
+                <h4 class="approved">{{ approved_count }}</h4>
+                <p>Approved</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECENT BOOKINGS -->
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Recent Bookings
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered text-center">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>User</th>
+                        <th>Event Date</th>
+                        <th>Event Type</th>
+                        <th>Guests</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in recent_bookings %}
+                    <tr>
+                        <td>{{ booking.user.username }}</td>
+                        <td>{{ booking.event_date }}</td>
+                        <td>{{ booking.event_type }}</td>
+                        <td>{{ booking.guests }}</td>
+                        <td>
+                            {% if booking.status == 'Pending' %}
+                                <span class="pending">Pending</span>
+                            {% elif booking.status == 'Approved' %}
+                                <span class="approved">Approved</span>
+                            {% else %}
+                                <span class="rejected">Rejected</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No bookings found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="text-end mt-3">
+        <a href="{% url 'manage_bookings' %}" class="btn btn-primary">
+            Manage Bookings
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

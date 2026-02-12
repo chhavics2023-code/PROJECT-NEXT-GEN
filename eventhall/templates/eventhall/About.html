@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Hall</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">EventHall</a>
+    <div class="navbar-nav">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/halls/">Halls</a>
+      <a class="nav-link" href="/login/">Login</a>
+      <a class="nav-link" href="/signup/">Signup</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | Event Hall Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .about-card {
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <a class="navbar-brand" href="{% url 'home' %}">Event Hall</a>
+    <div class="ms-auto">
+        <a href="{% url 'home' %}" class="btn btn-light btn-sm">Home</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="card about-card shadow p-4">
+
+        <h2 class="text-center mb-3">About Event Hall Management System</h2>
+
+        <p>
+            The Event Hall Management System is a web-based application designed
+            to simplify the process of booking and managing event halls online.
+        </p>
+
+        <p>
+            This system allows users to:
+        </p>
+
+        <ul>
+            <li>Browse available event halls</li>
+            <li>View hall details and images</li>
+            <li>Submit online booking requests</li>
+            <li>Track booking status (Pending / Approved / Rejected)</li>
+        </ul>
+
+        <p>
+            From the administrator side, the system provides features to:
+        </p>
+
+        <ul>
+            <li>Manage event hall listings</li>
+            <li>Approve or reject booking requests</li>
+            <li>Monitor bookings through an admin dashboard</li>
+        </ul>
+
+        <p>
+            This project is developed using
+            <strong>Django, HTML, CSS, Bootstrap, and JavaScript</strong>,
+            making it suitable for educational and real-world applications.
+        </p>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'halls' %}" class="btn btn-primary">View Event Halls</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
